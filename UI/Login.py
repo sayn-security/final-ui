@@ -20,25 +20,10 @@ from threading import Thread
 import time
 import tkinter
 
-
-
 class Ui_LOGIN(object):
     
-    def passwordcor(self):
-       
-        self.window=QtWidgets.QMainWindow()
-        self.ui=Ui_correctpassword()
-        self.ui.setupUi(self.window)
-        self.window.show()
-      
-    def passwordincor(self):
-        self.window=QtWidgets.QMainWindow()
-        self.ui=Ui_Incorrectpassword()
-        self.ui.setupUi(self.window)
-        self.window.show()        
-
     def setupUi(self, LOGIN):
-        
+ 
         LOGIN.setObjectName("LOGIN")
         LOGIN.resize(1350, 800)
         LOGIN.setStyleSheet("background-color: rgb(0, 0, 0);")
@@ -135,7 +120,6 @@ class Ui_LOGIN(object):
 
         self.retranslateUi(LOGIN)
         QtCore.QMetaObject.connectSlotsByName(LOGIN)
-        #self.centralwidget.keyPressEvent = self.keyPressEvent
 
     def retranslateUi(self, LOGIN):
         _translate = QtCore.QCoreApplication.translate
@@ -156,9 +140,10 @@ def main():
     app = QtWidgets.QApplication(sys.argv)
     LOGIN = QtWidgets.QMainWindow()
     ui = Ui_LOGIN()
+    
     ui.setupUi(LOGIN);
     
-
+    
    #x=Thread(target=LOGIN.show(),args=(1,))
     #x.run()    
     #app.processEvents()

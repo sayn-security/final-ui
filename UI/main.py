@@ -6,14 +6,13 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-from pynput import keyboard
+#from pynput import keyboard
 import time
 import decimal
 import xlsxwriter
 from threading import Thread
 import time
 import keyboard as newKeyboard
-
 import tkinter
 from Login import Ui_LOGIN
 from Reset import Ui_reset
@@ -28,6 +27,10 @@ from email.mime.multipart import MIMEMultipart
 import random
 import string
 import CART_Final
+
+
+
+
 #import emailsayn
 
 
@@ -59,7 +62,7 @@ class secd2window(QtWidgets.QMainWindow, Ui_Secondary_Password):
         super(secd2window, self).__init__(parent)
         self.setupUi(self)
         self.submit.clicked.connect(self.hide)
-        #self.keylistener()
+        
         
 
         
@@ -67,10 +70,6 @@ class resetwindow(QtWidgets.QMainWindow, Ui_reset,):
     def __init__(self, parent=None):
         super(resetwindow, self).__init__(parent)
         self.setupUi(self)
-        '''abc = 2
-        defg = 'suri.kaks@gmail.com'
-        print(Manager.sender(self,abc,defg))'''
-        #Manager.sender(2,'suri.kaks@gmail.com')
         self.backbutton.clicked.connect(self.hide)
 
 
@@ -175,7 +174,7 @@ class Manager:
         server.starttls()
         server.login(from_user,password)
         subject = 'Sayn Securities'
-        print("reached heere1")
+        print("reached here 1")
         msg = MIMEMultipart()
         msg['From'] = from_user
         msg['To'] = to_user
@@ -234,12 +233,35 @@ class Manager:
         defg = 'suri.kaks@gmail.com'
         wro=self.sender(abc,defg)
         print(wro)
+
     def resetcode(self):
+        
         abc = 2
         defg = "suri.kaks@gmail.com"
         res=self.sender(abc,defg)
+        pridoc=open("pricode.txt","w")
+        pridoc.write(res)
+        pridoc.close()
         print(res)
-                 
+
+    def check_code(self):
+        usdata1=self.reset.textbox.text()
+        usdoc1= open("temp_code.txt","w")
+        usdoc1.write(usdata1)
+        usdoc1.close()
+        temppass= open("temp_code.txt","r")
+        regpass=open("pricode.txt","r")
+        tp=temppass.read()
+        rp=regpass.read()
+        if(tp == rp):
+                print("Correct Code")
+                print("Welcome")
+        else:
+            print("Incorrect Code")
+            self.resetcode()
+
+        temppass.close()
+        regpass.close()             
     def __init__(self):
         self.login = loginwindow()
         self.inco = incorwindow()
@@ -262,6 +284,7 @@ class Manager:
         self.login.resetbutton.clicked.connect(self.resetcode)
         self.reset.backbutton.clicked.connect(self.login.show)
         self.reset.resend.clicked.connect(self.resetcode)
+        self.reset.submit.clicked.connect(self.check_code)     
         self.secd2.submit.clicked.connect(self.login.hide)
         self.secd2.submit.clicked.connect(self.check_order)
         self.reg.nextbutton.clicked.connect(self.regsecd.show)
@@ -276,6 +299,7 @@ def main():
     import sys
     app = QtWidgets.QApplication(sys.argv)
     manager = Manager()
+    
     
     #print(sender(2,'wasabiijunior@gmail.com'))
     sys.exit(app.exec_())

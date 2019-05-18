@@ -12,12 +12,6 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_reset(object):
 
-
-    
-
-
-
-
     def setupUi(self, reset):
         reset.setObjectName("reset")
         reset.resize(1380, 800)

@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{417a20e3-a39a-416b-9208-e8ff445133d3}</ProjectGuid>
     <ProjectHome />
-    <StartupFile>registration.py</StartupFile>
+    <StartupFile>main.py</StartupFile>
     <SearchPath />
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
